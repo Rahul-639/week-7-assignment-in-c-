@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+#include <numeric>
+using namespace std;
+int calculateSuperDigit(long long num) {
+    if (num < 10) {
+        return static_cast<int>(num);
+    }
+    long long sum_of_digits = 0;
+    while (num > 0) {
+        sum_of_digits += num % 10; 
+        num /= 10;                 
+    }
+    return calculateSuperDigit(sum_of_digits);
+}
+int superDigit(string n, int k) {
+    long long sum_n = 0;
+    for (char c : n) {
+        sum_n += c - '0'; 
+    }
+    long long initial_sum = sum_n * k;
+    return calculateSuperDigit(initial_sum);
+}
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    string n;
+    int k;
+    cin >> n >> k;
+    int result = superDigit(n, k);
+    cout << result << endl;
+    return 0;
+}
