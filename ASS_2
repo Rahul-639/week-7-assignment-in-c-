@@ -1,0 +1,13 @@
+#include <stdio.h>
+int sumOfDigits(int n) {
+    if (n == 0)   // Base case
+        return 0;
+    return (n % 10) + sumOfDigits(n / 10); 
+}
+int main() {
+    int n;
+    scanf("%d", &n); 
+    int result = sumOfDigits(n);
+    printf("%d\n", result);   
+    return 0;
+}
